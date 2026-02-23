@@ -56,7 +56,7 @@
         }
 
         html {
-            scroll-behavior: smooth
+            scroll-behavior: auto
         }
 
         body {
@@ -1257,10 +1257,10 @@
           <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="wk-content">
-          <div class="learning-obj"><h4>\uD83C\uDFAF What you'll learn</h4><ul>${wk.objectives.map(o => `<li>${o}</li>`).join('')}</ul></div>
-          <div class="keywords-section"><h4>\uD83D\uDD11 Keywords \u2014 Click to copy, then search to learn</h4><div class="keywords-wrap">${wk.keywords.map(k => `<span class="keyword" onclick="copyKw(this,'${k.replace(/'/g, "\\'")}')" title="Click to copy"><span class="kw-icon">\uD83D\uDCCB</span>${k}</span>`).join('')}</div></div>
-          <div class="tasks-section"><h4>\u2705 Tasks</h4>${wk.tasks.map(t => { const td = data.tasks[t.id]; return `<div class="task-item"><div class="task-check${td ? ' done' : ''}" onclick="toggleTask('${t.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="task-text">${t.text}</span></div>` }).join('')}</div>
-          <div class="resources-section"><h4>\uD83D\uDCDA Resources</h4>${wk.resources.map(r => `<div class="res-item">${r}</div>`).join('')}</div>
+          <div class="learning-obj"><h4><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-light)"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> What you'll learn</h4><ul>${wk.objectives.map(o => `<li>${o}</li>`).join('')}</ul></div>
+          <div class="keywords-section"><h4><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--amber)"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg> Keywords \u2014 Click to copy, then search to learn</h4><div class="keywords-wrap">${wk.keywords.map(k => `<span class="keyword" onclick="copyKw(this,'${k.replace(/'/g, "\\'")}')" title="Click to copy"><span class="kw-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>${k}</span>`).join('')}</div></div>
+          <div class="tasks-section"><h4><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--cyan)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Tasks</h4>${wk.tasks.map(t => { const td = data.tasks[t.id]; return `<div class="task-item"><div class="task-check${td ? ' done' : ''}" onclick="toggleTask('${t.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="task-text">${t.text}</span></div>` }).join('')}</div>
+          <div class="resources-section"><h4><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--pink)"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Resources</h4>${wk.resources.map(r => `<div class="res-item">${r}</div>`).join('')}</div>
           <button class="complete-btn" onclick="toggleWeek('${wk.id}')">${wDone ? '\u2713 Week Completed' : 'Mark Week as Complete'}</button>
         </div>
       </div>`;
@@ -1279,8 +1279,80 @@
         }
 
         function toggleCard(id) { document.getElementById('card-' + id).classList.toggle('open') }
-        function toggleWeek(id) { const d = load(); d.weeks[id] = d.weeks[id] ? null : new Date().toISOString(); if (!d.weeks[id]) delete d.weeks[id]; save(d); const allDone = COURSE.flatMap(p => p.weeks.map(w => w.id)).every(wid => d.weeks[wid]); render(); if (allDone) setTimeout(() => { document.getElementById('celebBanner').classList.add('show'); launchConfetti() }, 400) }
-        function toggleTask(id) { const d = load(); d.tasks[id] = d.tasks[id] ? null : new Date().toISOString(); if (!d.tasks[id]) delete d.tasks[id]; save(d); render() }
+        function toggleWeek(id) {
+            const d = load();
+            d.weeks[id] = d.weeks[id] ? null : new Date().toISOString();
+            if (!d.weeks[id]) delete d.weeks[id];
+            save(d);
+            const card = document.getElementById('card-' + id);
+            if (d.weeks[id]) {
+                card.classList.add('completed');
+            } else {
+                card.classList.remove('completed');
+            }
+            const btn = card.querySelector('.complete-btn');
+            if (btn) btn.textContent = d.weeks[id] ? '\u2713 Week Completed' : 'Mark Week as Complete';
+            updateProgress();
+            const allDone = COURSE.flatMap(p => p.weeks.map(w => w.id)).every(wid => d.weeks[wid]);
+            if (allDone) setTimeout(() => { document.getElementById('celebBanner').classList.add('show'); launchConfetti() }, 400);
+        }
+        function toggleTask(id) {
+            const d = load();
+            d.tasks[id] = d.tasks[id] ? null : new Date().toISOString();
+            if (!d.tasks[id]) delete d.tasks[id];
+            save(d);
+            const el = event.currentTarget;
+            if (d.tasks[id]) {
+                el.classList.add('done');
+            } else {
+                el.classList.remove('done');
+            }
+            updateTaskCounters();
+            updateProgress();
+        }
+        function updateProgress() {
+            const data = load();
+            let totalW = 0, doneW = 0, totalT = 0, doneT = 0;
+            COURSE.forEach(phase => {
+                phase.weeks.forEach(wk => {
+                    totalW++;
+                    if (data.weeks[wk.id]) doneW++;
+                    wk.tasks.forEach(t => { totalT++; if (data.tasks[t.id]) doneT++; });
+                });
+            });
+            const pct = totalW ? Math.round((doneW / totalW) * 100) : 0;
+            document.getElementById('hFill').style.width = pct + '%';
+            document.getElementById('hText').textContent = pct + '%';
+            document.getElementById('sC').textContent = doneW;
+            document.getElementById('sR').textContent = totalW - doneW;
+            document.getElementById('sP').textContent = pct + '%';
+            document.getElementById('sT').textContent = doneT;
+            COURSE.forEach((ph, i) => {
+                const pd = ph.weeks.filter(w => data.weeks[w.id]).length;
+                const pp = Math.round((pd / ph.weeks.length) * 100);
+                document.getElementById(`pb${i + 1}`).style.width = pp + '%';
+                document.getElementById(`pp${i + 1}`).textContent = pp + '%';
+            });
+            document.querySelectorAll('.sidebar-dot').forEach((dot, idx) => {
+                const allWeeks = COURSE.flatMap(p => p.weeks);
+                if (idx < allWeeks.length) {
+                    if (data.weeks[allWeeks[idx].id]) dot.classList.add('done');
+                    else dot.classList.remove('done');
+                }
+            });
+        }
+        function updateTaskCounters() {
+            const data = load();
+            COURSE.forEach(phase => {
+                phase.weeks.forEach(wk => {
+                    const card = document.getElementById('card-' + wk.id);
+                    if (!card) return;
+                    const tasksDone = wk.tasks.filter(t => data.tasks[t.id]).length;
+                    const tag = card.querySelector('.wk-tag');
+                    if (tag) tag.textContent = `${wk.week} \u00B7 ${tasksDone}/${wk.tasks.length} tasks \u00B7 ${wk.keywords.length} keywords`;
+                });
+            });
+        }
         function setFilter(f, el) { currentFilter = f; document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active')); el.classList.add('active'); render() }
         function handleSearch() { searchQuery = document.getElementById('searchInput').value.trim(); render() }
         function closeCeleb() { document.getElementById('celebBanner').classList.remove('show') }
