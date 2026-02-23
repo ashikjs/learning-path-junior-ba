@@ -1,1 +1,1294 @@
-htet
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BA Learning Path — 8-Week Learning Path</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --bg: #06060b;
+            --surface: #0e0e18;
+            --surface-2: #151524;
+            --surface-3: #1c1c30;
+            --border: #252540;
+            --border-light: #35355a;
+            --text: #e4e4f0;
+            --text-muted: #9494b8;
+            --text-dim: #5e5e80;
+            --accent: #7c6aef;
+            --accent-light: #a89afa;
+            --accent-bg: rgba(124, 106, 239, 0.08);
+            --accent-border: rgba(124, 106, 239, 0.2);
+            --cyan: #22d3ee;
+            --cyan-bg: rgba(34, 211, 238, 0.07);
+            --cyan-border: rgba(34, 211, 238, 0.2);
+            --pink: #f472b6;
+            --pink-bg: rgba(244, 114, 182, 0.07);
+            --pink-border: rgba(244, 114, 182, 0.2);
+            --amber: #fbbf24;
+            --amber-bg: rgba(251, 191, 36, 0.07);
+            --amber-border: rgba(251, 191, 36, 0.2);
+            --green: #34d399;
+            --green-bg: rgba(52, 211, 153, 0.1);
+            --green-border: rgba(52, 211, 153, 0.25);
+            --red: #f87171;
+            --p1: #7c6aef;
+            --p2: #22d3ee;
+            --p3: #f472b6;
+            --radius: 10px;
+            --radius-sm: 6px;
+            --radius-lg: 16px;
+            --font-display: 'Fraunces', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg)
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(6, 6, 11, 0.88);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 1.5rem
+        }
+
+        .header-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text);
+            text-decoration: none
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 14px
+        }
+
+        .header-progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .8rem;
+            color: var(--text-muted)
+        }
+
+        .h-bar {
+            width: 100px;
+            height: 3px;
+            background: var(--surface-3);
+            border-radius: 2px;
+            overflow: hidden
+        }
+
+        .h-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--cyan));
+            border-radius: 2px;
+            transition: width .6s cubic-bezier(.16, 1, .3, 1)
+        }
+
+        .reset-btn {
+            background: 0;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            padding: 4px 12px;
+            border-radius: 5px;
+            font-size: .7rem;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: all .2s
+        }
+
+        .reset-btn:hover {
+            border-color: var(--red);
+            color: var(--red)
+        }
+
+        .hero {
+            position: relative;
+            padding: 4.5rem 1.5rem 2.5rem;
+            text-align: center;
+            overflow: hidden
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(124, 106, 239, 0.1) 0%, transparent 65%);
+            pointer-events: none
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 14px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: .73rem;
+            color: var(--accent-light);
+            margin-bottom: 1.2rem;
+            font-family: var(--font-mono)
+        }
+
+        .hero-badge .dot {
+            width: 5px;
+            height: 5px;
+            background: var(--cyan);
+            border-radius: 50%;
+            animation: pulse 2s infinite
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .3
+            }
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: .8rem
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            background: linear-gradient(135deg, var(--accent-light), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .hero>p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 540px;
+            margin: 0 auto 1.5rem
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: .5rem 1.5rem 1.5rem;
+            flex-wrap: wrap
+        }
+
+        .stat {
+            text-align: center
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700
+        }
+
+        .stat-label {
+            font-size: .7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-top: 1px
+        }
+
+        .progress-overview {
+            max-width: 1120px;
+            margin: 1rem auto 2.5rem;
+            padding: 0 1.5rem
+        }
+
+        .progress-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem 1.8rem
+        }
+
+        .progress-card h3 {
+            font-family: var(--font-display);
+            font-size: .95rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted)
+        }
+
+        .phase-progress-row {
+            display: grid;
+            grid-template-columns: 130px 1fr 50px;
+            align-items: center;
+            gap: .8rem;
+            padding: .45rem 0
+        }
+
+        .phase-label {
+            font-size: .82rem;
+            font-weight: 600
+        }
+
+        .phase-bar {
+            height: 6px;
+            background: var(--surface-3);
+            border-radius: 3px;
+            overflow: hidden
+        }
+
+        .phase-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width .6s cubic-bezier(.16, 1, .3, 1)
+        }
+
+        .phase-pct {
+            font-family: var(--font-mono);
+            font-size: .75rem;
+            color: var(--text-muted);
+            text-align: right
+        }
+
+        .filter-bar {
+            max-width: 1120px;
+            margin: 0 auto 1rem;
+            padding: 0 1.5rem;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .filter-tab {
+            padding: 6px 16px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            font-family: var(--font-body);
+            font-size: .8rem;
+            cursor: pointer;
+            transition: all .2s
+        }
+
+        .filter-tab:hover {
+            border-color: var(--border-light);
+            color: var(--text)
+        }
+
+        .filter-tab.active {
+            background: var(--accent-bg);
+            border-color: var(--accent-border);
+            color: var(--accent-light)
+        }
+
+        .search-box {
+            max-width: 1120px;
+            margin: 0 auto 1rem;
+            padding: 0 1.5rem
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 16px 10px 40px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: .88rem;
+            outline: none;
+            transition: border-color .2s;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235e5e80' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: 14px center
+        }
+
+        .search-input::placeholder {
+            color: var(--text-dim)
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-border)
+        }
+
+        .main {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 1.5rem 5rem
+        }
+
+        .phase-section {
+            margin-bottom: 3.5rem;
+            animation: fadeUp .5s ease both
+        }
+
+        .phase-section:nth-child(2) {
+            animation-delay: .08s
+        }
+
+        .phase-section:nth-child(3) {
+            animation-delay: .16s
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: flex-start;
+            gap: .9rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .phase-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1rem;
+            color: #fff;
+            flex-shrink: 0
+        }
+
+        .phase-htext h2 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.3
+        }
+
+        .phase-htext p {
+            font-size: .83rem;
+            color: var(--text-muted);
+            margin-top: 2px
+        }
+
+        .week-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: .75rem;
+            overflow: hidden;
+            transition: all .25s
+        }
+
+        .week-card:hover {
+            border-color: var(--border-light)
+        }
+
+        .week-card.completed {
+            border-color: var(--green-border);
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.02), transparent)
+        }
+
+        .week-card.completed .wk-title {
+            text-decoration: line-through;
+            text-decoration-color: var(--text-dim);
+            color: var(--text-muted)
+        }
+
+        .wk-toggle {
+            width: 100%;
+            background: 0;
+            border: 0;
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: .85rem;
+            cursor: pointer;
+            text-align: left;
+            color: var(--text);
+            font-family: var(--font-body)
+        }
+
+        .wk-check {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all .25s;
+            background: 0;
+            cursor: pointer
+        }
+
+        .wk-check:hover {
+            border-color: var(--green)
+        }
+
+        .week-card.completed .wk-check {
+            background: var(--green);
+            border-color: var(--green)
+        }
+
+        .wk-check svg {
+            width: 12px;
+            height: 12px;
+            opacity: 0;
+            transition: all .25s;
+            color: #fff
+        }
+
+        .week-card.completed .wk-check svg {
+            opacity: 1
+        }
+
+        .wk-info {
+            flex: 1;
+            min-width: 0
+        }
+
+        .wk-tag {
+            font-family: var(--font-mono);
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--text-dim)
+        }
+
+        .wk-title {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.35
+        }
+
+        .wk-subtitle {
+            font-size: .78rem;
+            color: var(--text-dim);
+            margin-top: 2px
+        }
+
+        .chevron {
+            width: 18px;
+            height: 18px;
+            color: var(--text-dim);
+            transition: transform .25s;
+            flex-shrink: 0
+        }
+
+        .week-card.open .chevron {
+            transform: rotate(180deg)
+        }
+
+        .wk-content {
+            display: none;
+            padding: 0 1.25rem 1.25rem;
+            border-top: 1px solid var(--border)
+        }
+
+        .week-card.open .wk-content {
+            display: block
+        }
+
+        .learning-obj {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--accent-bg);
+            border: 1px solid var(--accent-border);
+            border-radius: var(--radius-sm)
+        }
+
+        .learning-obj h4 {
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--accent-light);
+            margin-bottom: .6rem;
+            font-family: var(--font-mono);
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .learning-obj ul {
+            list-style: none;
+            padding: 0
+        }
+
+        .learning-obj li {
+            font-size: .85rem;
+            color: var(--text-muted);
+            padding: .25rem 0 .25rem 1.2rem;
+            position: relative;
+            line-height: 1.5
+        }
+
+        .learning-obj li::before {
+            content: '\2192';
+            position: absolute;
+            left: 0;
+            color: var(--accent-light);
+            font-size: .8rem
+        }
+
+        .keywords-section {
+            margin-top: 1rem
+        }
+
+        .keywords-section h4 {
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--amber);
+            margin-bottom: .6rem;
+            font-family: var(--font-mono);
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .keywords-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px
+        }
+
+        .keyword {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 11px;
+            background: var(--surface-3);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: .73rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            transition: all .2s;
+            cursor: pointer
+        }
+
+        .keyword:hover {
+            border-color: var(--amber-border);
+            color: var(--amber);
+            background: var(--amber-bg)
+        }
+
+        .keyword.copied {
+            border-color: var(--green-border);
+            color: var(--green);
+            background: var(--green-bg)
+        }
+
+        .keyword.copied .kw-icon {
+            display: none
+        }
+
+        .keyword.copied::before {
+            content: '\2713';
+            font-size: .7rem;
+            margin-right: 2px
+        }
+
+        .tasks-section {
+            margin-top: 1rem
+        }
+
+        .tasks-section h4 {
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--cyan);
+            margin-bottom: .6rem;
+            font-family: var(--font-mono);
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: .6rem;
+            padding: .4rem 0;
+            font-size: .85rem;
+            color: var(--text-muted);
+            line-height: 1.5
+        }
+
+        .task-check {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            border: 1.5px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            cursor: pointer;
+            transition: all .2s;
+            background: transparent
+        }
+
+        .task-check:hover {
+            border-color: var(--cyan)
+        }
+
+        .task-check.done {
+            background: var(--cyan);
+            border-color: var(--cyan)
+        }
+
+        .task-check svg {
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            color: #000;
+            transition: all .2s
+        }
+
+        .task-check.done svg {
+            opacity: 1
+        }
+
+        .task-check.done+.task-text {
+            text-decoration: line-through;
+            text-decoration-color: var(--text-dim);
+            color: var(--text-dim)
+        }
+
+        .resources-section {
+            margin-top: 1rem
+        }
+
+        .resources-section h4 {
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--pink);
+            margin-bottom: .6rem;
+            font-family: var(--font-mono);
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .res-item {
+            font-size: .82rem;
+            color: var(--text-dim);
+            padding: .2rem 0 .2rem 1.2rem;
+            position: relative
+        }
+
+        .res-item::before {
+            content: '\25C6';
+            position: absolute;
+            left: 0;
+            color: var(--pink);
+            font-size: .5rem;
+            top: .45rem
+        }
+
+        .complete-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 1.2rem;
+            padding: 8px 18px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: .82rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all .25s
+        }
+
+        .complete-btn:hover {
+            background: var(--green-bg);
+            border-color: var(--green-border);
+            color: var(--green)
+        }
+
+        .week-card.completed .complete-btn {
+            background: var(--green-bg);
+            border-color: var(--green-border);
+            color: var(--green)
+        }
+
+        .sidebar-nav {
+            position: fixed;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 3px
+        }
+
+        @media(max-width:1350px) {
+            .sidebar-nav {
+                display: none
+            }
+        }
+
+        .sidebar-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border-light);
+            background: 0;
+            cursor: pointer;
+            transition: all .25s;
+            position: relative
+        }
+
+        .sidebar-dot:hover {
+            border-color: var(--text-muted);
+            transform: scale(1.4)
+        }
+
+        .sidebar-dot.done {
+            border-color: var(--green);
+            background: var(--green)
+        }
+
+        .sidebar-dot .tip {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            padding: 3px 9px;
+            border-radius: 5px;
+            font-size: .68rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .15s;
+            color: var(--text-muted);
+            font-family: var(--font-body)
+        }
+
+        .sidebar-dot:hover .tip {
+            opacity: 1
+        }
+
+        .confetti-box {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10000
+        }
+
+        .celeb-banner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(.85);
+            background: var(--surface);
+            border: 2px solid var(--green);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 3.5rem;
+            text-align: center;
+            z-index: 10001;
+            box-shadow: 0 0 80px rgba(52, 211, 153, 0.15);
+            animation: celebPop .5s cubic-bezier(.34, 1.56, .64, 1) forwards
+        }
+
+        .celeb-banner.show {
+            display: block
+        }
+
+        @keyframes celebPop {
+            to {
+                transform: translate(-50%, -50%) scale(1)
+            }
+        }
+
+        .celeb-banner h2 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            margin-bottom: .4rem;
+            background: linear-gradient(135deg, var(--green), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .celeb-banner p {
+            color: var(--text-muted);
+            font-size: .9rem
+        }
+
+        .celeb-banner button {
+            margin-top: 1.2rem;
+            padding: 8px 24px;
+            background: var(--green);
+            color: #000;
+            border: 0;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-body);
+            font-size: .85rem;
+            font-weight: 600;
+            cursor: pointer
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: .78rem
+        }
+
+        .footer strong {
+            color: var(--text-muted)
+        }
+
+        @media(max-width:600px) {
+            .stats-bar {
+                gap: 1.2rem
+            }
+
+            .phase-progress-row {
+                grid-template-columns: 90px 1fr 44px
+            }
+
+            .wk-toggle {
+                padding: .8rem 1rem
+            }
+
+            .wk-content {
+                padding: 0 1rem 1rem
+            }
+
+            .hero {
+                padding: 3rem 1.5rem 2rem
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon">📘</div>BA Learning Path
+            </a>
+            <div class="header-right">
+                <div class="header-progress">
+                    <div class="h-bar">
+                        <div class="h-bar-fill" id="hFill" style="width:0%"></div>
+                    </div><span id="hText">0%</span>
+                </div><button class="reset-btn" onclick="resetAll()">Reset</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-badge"><span class="dot"></span> 8-Week Syllabus</div>
+        <h1>Your Business Analyst<br><em>Learning Path</em></h1>
+        <p>8 weeks of focused, hands-on learning. Each week has keywords to research and real tasks to deliver. Click
+            keywords to copy, check off tasks as you go.</p>
+    </section>
+
+    <div class="stats-bar">
+        <div class="stat">
+            <div class="stat-value" id="sC">0</div>
+            <div class="stat-label">Weeks Done</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value" id="sR">8</div>
+            <div class="stat-label">Remaining</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value" id="sP">0%</div>
+            <div class="stat-label">Overall</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value" id="sT">0</div>
+            <div class="stat-label">Tasks Done</div>
+        </div>
+    </div>
+
+    <div class="progress-overview">
+        <div class="progress-card">
+            <h3>Phase Progress</h3>
+            <div class="phase-progress-row"><span class="phase-label" style="color:var(--p1)">① Foundation</span>
+                <div class="phase-bar">
+                    <div class="phase-bar-fill" id="pb1" style="width:0%;background:var(--p1)"></div>
+                </div><span class="phase-pct" id="pp1">0%</span>
+            </div>
+            <div class="phase-progress-row"><span class="phase-label" style="color:var(--p2)">② Skill Building</span>
+                <div class="phase-bar">
+                    <div class="phase-bar-fill" id="pb2" style="width:0%;background:var(--p2)"></div>
+                </div><span class="phase-pct" id="pp2">0%</span>
+            </div>
+            <div class="phase-progress-row"><span class="phase-label" style="color:var(--p3)">③ Independence</span>
+                <div class="phase-bar">
+                    <div class="phase-bar-fill" id="pb3" style="width:0%;background:var(--p3)"></div>
+                </div><span class="phase-pct" id="pp3">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="search-box"><input type="text" class="search-input" id="searchInput"
+            placeholder="Search keywords, topics, or tasks..." oninput="handleSearch()"></div>
+    <div class="filter-bar">
+        <button class="filter-tab active" onclick="setFilter('all',this)">All Weeks</button>
+        <button class="filter-tab" onclick="setFilter('phase-1',this)">Phase 1</button>
+        <button class="filter-tab" onclick="setFilter('phase-2',this)">Phase 2</button>
+        <button class="filter-tab" onclick="setFilter('phase-3',this)">Phase 3</button>
+        <button class="filter-tab" onclick="setFilter('incomplete',this)">⬜ Incomplete</button>
+        <button class="filter-tab" onclick="setFilter('completed',this)">✓ Completed</button>
+    </div>
+
+    <main class="main" id="courseContent"></main>
+    <nav class="sidebar-nav" id="sideNav"></nav>
+    <div class="confetti-box" id="confettiBox"></div>
+    <div class="celeb-banner" id="celebBanner">
+        <h2>🎉 Course Complete!</h2>
+        <p>You've finished the entire 8-week BA Learning Path!<br>Amazing work — you're ready for real ownership.</p>
+        <button onclick="closeCeleb()">Awesome!</button>
+    </div>
+    <footer class="footer">
+        <p>BA Academy — Progress saved in your browser automatically</p>
+    </footer>
+
+    <script>
+        const COURSE = [
+            {
+                phase: 1, title: "Foundation", subtitle: "Core BA skills — requirements, user stories, documentation.", color: "var(--p1)", weeks: [
+
+                    {
+                        id: "w1", week: "Week 1", title: "Agile, Scrum & the BA Role",
+                        subtitle: "Understand how Agile teams work and where a BA fits in every ceremony.",
+                        objectives: [
+                            "Differentiate functional requirements, non-functional requirements, and business rules",
+                            "Understand each Scrum ceremony and the BA\u2019s role in it",
+                            "Read and critically evaluate existing user stories"
+                        ],
+                        keywords: ["Business Analysis", "BABOK", "IIBA", "Functional Requirements", "Non-Functional Requirements", "Business Rules", "Agile Methodology", "Scrum Framework", "Sprint", "Sprint Planning", "Daily Standup", "Sprint Review", "Sprint Retrospective", "Product Backlog", "Sprint Backlog", "Scrum Master", "Product Owner", "SDLC", "Kanban", "Velocity", "Timeboxing", "Increment", "Definition of Done"],
+                        tasks: [
+                            { id: "t1_1", text: "Read BABOK Guide chapters 1\u20133 \u2014 write a 1-page summary of key takeaways" },
+                            { id: "t1_2", text: "Pick 3 existing user stories from your project \u2014 annotate what\u2019s strong and what\u2019s weak in each" },
+                            { id: "t1_3", text: "Create a reference sheet: every Scrum ceremony, its purpose, attendees, and BA\u2019s role" },
+                            { id: "t1_4", text: "Research and write a short comparison: Scrum vs Kanban vs Scrumban \u2014 when to use each" }
+                        ],
+                        resources: ["IIBA BABOK Guide v3", "Scrum Guide \u2014 scrumguides.org", "Agile Manifesto \u2014 agilemanifesto.org"]
+                    },
+
+                    {
+                        id: "w2", week: "Week 2", title: "User Stories & Acceptance Criteria",
+                        subtitle: "The single most important BA skill \u2014 writing requirements developers can build from.",
+                        objectives: [
+                            "Write user stories in standard format with Given-When-Then acceptance criteria",
+                            "Apply the INVEST criteria to validate story quality",
+                            "Perform stakeholder analysis using Power-Interest Grid and RACI"
+                        ],
+                        keywords: ["User Story", "As a / I want / So that", "Acceptance Criteria", "Given-When-Then", "Gherkin Syntax", "Definition of Done", "Definition of Ready", "INVEST Criteria", "Story Points", "Epic", "Feature", "Theme", "Story Mapping", "Story Splitting", "Vertical Slicing", "Stakeholder Analysis", "Power-Interest Grid", "RACI Matrix", "Elicitation Techniques", "Stakeholder Interview", "Requirements Workshop", "Persona", "MoSCoW"],
+                        tasks: [
+                            { id: "t2_1", text: "Write 5 user stories with acceptance criteria using Given-When-Then format" },
+                            { id: "t2_2", text: "Evaluate all 5 stories against the INVEST criteria \u2014 revise any that fail" },
+                            { id: "t2_3", text: "Create a Power-Interest Grid stakeholder map for one area of your product" },
+                            { id: "t2_4", text: "Draft a RACI matrix for a feature development scenario" },
+                            { id: "t2_5", text: "Create a User Story Map for a simple feature (e.g., login or checkout flow)" }
+                        ],
+                        resources: ["User Story Mapping \u2014 Jeff Patton", "Atlassian: User Stories with Examples", "Writing Great Specifications \u2014 Kamil Nicieja"]
+                    },
+
+                    {
+                        id: "w3", week: "Week 3", title: "BRD, Use Cases & Wireframes",
+                        subtitle: "Document requirements professionally and communicate ideas visually.",
+                        objectives: [
+                            "Structure and write a Business Requirements Document from scratch",
+                            "Create use case diagrams with actors, main flow, and alternate flows",
+                            "Build wireframes that clearly communicate feature intent"
+                        ],
+                        keywords: ["BRD", "Business Requirements Document", "FRD", "PRD", "SRS", "Use Case", "Use Case Diagram", "Actor", "Precondition", "Postcondition", "Main Flow", "Alternate Flow", "Exception Flow", "Wireframe", "Mockup", "Prototype", "Low-Fidelity", "High-Fidelity", "Figma", "User Flow", "Information Architecture", "Traceability Matrix", "Requirements Traceability"],
+                        tasks: [
+                            { id: "t3_1", text: "Write a BRD for a feature: background, scope, requirements, acceptance criteria, and wireframes" },
+                            { id: "t3_2", text: "Create wireframes for 3 screens using Figma or Balsamiq" },
+                            { id: "t3_3", text: "Draw a Use Case Diagram \u2014 identify actors, main flow, alternate flows, and exceptions" },
+                            { id: "t3_4", text: "Build a Requirements Traceability Matrix linking requirements \u2192 stories \u2192 test cases" }
+                        ],
+                        resources: ["Figma \u2014 figma.com (free)", "Balsamiq wireframing tool", "BRD templates (search for examples online)"]
+                    }
+                ]
+            },
+
+            {
+                phase: 2, title: "Skill Building", subtitle: "Process analysis, data skills, APIs, and testing.", color: "var(--p2)", weeks: [
+
+                    {
+                        id: "w4", week: "Week 4", title: "Process Modeling & BPMN",
+                        subtitle: "Visualize business processes to analyze, communicate, and improve them.",
+                        objectives: [
+                            "Create BPMN diagrams with gateways, events, and swimlanes",
+                            "Map as-is processes and design to-be improvements",
+                            "Draw system context diagrams showing integration boundaries"
+                        ],
+                        keywords: ["BPMN", "Business Process Model and Notation", "Process Mapping", "Swimlane Diagram", "As-Is Process", "To-Be Process", "Process Improvement", "Bottleneck Analysis", "Value Stream Mapping", "System Context Diagram", "Data Flow Diagram", "Activity Diagram", "Decision Gateway", "Exclusive Gateway", "Parallel Gateway", "Event", "Subprocess", "Mermaid.js", "Draw.io", "Flowchart vs BPMN"],
+                        tasks: [
+                            { id: "t4_1", text: "Create a BPMN diagram for an existing workflow in your product (as-is state)" },
+                            { id: "t4_2", text: "Identify 3 bottlenecks in the process \u2014 write a to-be improvement proposal for each" },
+                            { id: "t4_3", text: "Draw a system context diagram showing your product and all external integrations" },
+                            { id: "t4_4", text: "Recreate one of your diagrams using Mermaid.js code" }
+                        ],
+                        resources: ["BPMN 2.0 Quick Guide \u2014 bpmn.org", "Draw.io / diagrams.net (free)", "Mermaid.js live editor"]
+                    },
+
+                    {
+                        id: "w5", week: "Week 5", title: "SQL, ERD & Data Analysis",
+                        subtitle: "Query databases, understand data models, and extract business insights.",
+                        objectives: [
+                            "Write SQL queries: SELECT, JOIN, WHERE, GROUP BY, HAVING, subqueries",
+                            "Create ERDs and data dictionaries for product modules",
+                            "Use data to answer business questions and validate assumptions"
+                        ],
+                        keywords: ["SQL", "SELECT", "JOIN", "INNER JOIN", "LEFT JOIN", "WHERE", "GROUP BY", "HAVING", "ORDER BY", "COUNT", "SUM", "AVG", "Subquery", "CTE", "Common Table Expression", "ERD", "Entity Relationship Diagram", "Primary Key", "Foreign Key", "Normalization", "1NF 2NF 3NF", "Data Dictionary", "Data Validation", "Data Quality", "NULL Handling", "INDEX", "Database Schema"],
+                        tasks: [
+                            { id: "t5_1", text: "Complete 10 SQL exercises: simple SELECT \u2192 multi-table JOINs \u2192 GROUP BY with HAVING" },
+                            { id: "t5_2", text: "Create an ERD for one module of your product" },
+                            { id: "t5_3", text: "Write a data dictionary for that module (tables, columns, types, relationships)" },
+                            { id: "t5_4", text: "Write 3 analytical queries that answer real business questions \u2014 summarize findings" }
+                        ],
+                        resources: ["SQLZoo \u2014 interactive exercises", "SQLBolt \u2014 learn SQL with exercises", "Mode Analytics SQL course (free)"]
+                    },
+
+                    {
+                        id: "w6", week: "Week 6", title: "APIs, Scope & Testing",
+                        subtitle: "Understand system integration, manage scope, and validate with testing.",
+                        objectives: [
+                            "Understand REST APIs: endpoints, methods, request/response, JSON",
+                            "Write scope statements and manage scope creep with change requests",
+                            "Write test cases from acceptance criteria and file professional bug reports"
+                        ],
+                        keywords: ["API", "REST API", "Endpoint", "HTTP Methods", "GET POST PUT DELETE", "JSON", "Request-Response", "Authentication", "Authorization", "Webhook", "Integration", "Scope Statement", "In Scope vs Out of Scope", "Scope Creep", "Change Request", "Change Control", "Assumptions", "Constraints", "Dependencies", "Test Case", "UAT", "User Acceptance Testing", "Regression Testing", "Smoke Testing", "Exploratory Testing", "Bug Report", "Severity vs Priority", "Expected vs Actual", "Edge Case", "Boundary Testing", "Defect Lifecycle", "Happy Path", "Sad Path"],
+                        tasks: [
+                            { id: "t6_1", text: "Explore your product\u2019s API using Postman \u2014 document 5 endpoints (URL, method, purpose, sample response)" },
+                            { id: "t6_2", text: "Write a scope statement for a feature: in scope, out of scope, assumptions, constraints, dependencies" },
+                            { id: "t6_3", text: "Write 8 test cases for a feature you documented \u2014 derive them directly from acceptance criteria" },
+                            { id: "t6_4", text: "Test on staging \u2014 file 3 bug reports with screenshots, reproduction steps, expected vs actual" },
+                            { id: "t6_5", text: "Draft a change request template and fill it in for a scope creep scenario" }
+                        ],
+                        resources: ["Postman \u2014 API exploration tool", "REST API tutorial for beginners", "ISTQB Foundation syllabus (overview)"]
+                    }
+                ]
+            },
+
+            {
+                phase: 3, title: "Independence & Ownership", subtitle: "Own features end-to-end, prioritize strategically, and plan your growth.", color: "var(--p3)", weeks: [
+
+                    {
+                        id: "w7", week: "Week 7", title: "Own a Feature End-to-End",
+                        subtitle: "Your solo flight \u2014 take a feature from discovery to stakeholder sign-off.",
+                        objectives: [
+                            "Own requirements for a feature from research to formal approval",
+                            "Conduct stakeholder interviews, synthesize findings, and resolve conflicts",
+                            "Conduct competitive analysis to inform product decisions"
+                        ],
+                        keywords: ["Requirements Ownership", "End-to-End", "Discovery Phase", "Problem Statement", "Stakeholder Interview", "Synthesis", "Affinity Mapping", "Requirements Sign-Off", "Developer Handoff", "Sprint Ready", "Backlog Refinement", "MVP", "Minimum Viable Product", "Peer Review", "Competitive Analysis", "SWOT Analysis", "Feature Comparison Matrix", "Gap Analysis", "User Persona", "Jobs To Be Done", "JTBD", "Value Proposition"],
+                        tasks: [
+                            { id: "t7_1", text: "Get assigned a feature \u2014 own it end-to-end from discovery to sign-off" },
+                            { id: "t7_2", text: "Conduct 2+ stakeholder interviews independently \u2014 synthesize findings into themes" },
+                            { id: "t7_3", text: "Write a complete BRD: problem statement, requirements, acceptance criteria, wireframes" },
+                            { id: "t7_4", text: "Review technical feasibility with developers \u2014 document constraints and risks" },
+                            { id: "t7_5", text: "Get formal stakeholder sign-off on your requirements" },
+                            { id: "t7_6", text: "Research 3 competitor products \u2014 build a feature comparison matrix and write a SWOT analysis" }
+                        ],
+                        resources: ["Crucial Conversations \u2014 Kerry Patterson (book)", "SWOT analysis templates", "Figma prototyping tutorials"]
+                    },
+
+                    {
+                        id: "w8", week: "Week 8", title: "Prioritization, Metrics & Growth Plan",
+                        subtitle: "Think strategically, measure success, and plan your next chapter.",
+                        objectives: [
+                            "Apply prioritization frameworks: MoSCoW, RICE, WSJF, Kano Model",
+                            "Define KPIs and success metrics for features",
+                            "Build your portfolio and set SMART goals for continued growth"
+                        ],
+                        keywords: ["Prioritization", "MoSCoW Method", "RICE Scoring", "Reach Impact Confidence Effort", "WSJF", "Weighted Shortest Job First", "Kano Model", "Cost-Benefit Analysis", "ROI", "Impact Analysis", "Change Management", "Story Points", "T-Shirt Sizing", "Planning Poker", "KPI", "Key Performance Indicator", "Success Metrics", "OKR", "Objectives and Key Results", "A/B Testing", "Release Planning", "Product Roadmap", "Technical Debt", "SMART Goals", "ECBA Certification", "Personal Development Plan", "BA Competency Model"],
+                        tasks: [
+                            { id: "t8_1", text: "Prioritize a product backlog using RICE scoring \u2014 justify your top 5 rankings" },
+                            { id: "t8_2", text: "Apply MoSCoW to a set of requirements \u2014 document rationale for each category" },
+                            { id: "t8_3", text: "Write an impact analysis for a proposed change: affected systems, users, and processes" },
+                            { id: "t8_4", text: "Define 3\u20135 KPIs for a feature you worked on \u2014 how would you measure success?" },
+                            { id: "t8_5", text: "Compile all deliverables from 8 weeks into a portfolio" },
+                            { id: "t8_6", text: "Write 5 SMART goals for the next quarter and a personal development plan" }
+                        ],
+                        resources: ["RICE scoring calculator", "Kano Model explained", "Measure What Matters \u2014 John Doerr", "IIBA ECBA certification guide"]
+                    }
+                ]
+            }
+        ];
+
+        const SK = 'ba_academy_v4';
+        function load() { try { return JSON.parse(localStorage.getItem(SK)) || { weeks: {}, tasks: {} } } catch { return { weeks: {}, tasks: {} } } }
+        function save(d) { try { localStorage.setItem(SK, JSON.stringify(d)) } catch { } }
+        function resetAll() { if (confirm('Reset ALL progress? This cannot be undone.')) { localStorage.removeItem(SK); location.reload() } }
+
+        let currentFilter = 'all', searchQuery = '';
+
+        function render() {
+            const data = load(), main = document.getElementById('courseContent'), nav = document.getElementById('sideNav');
+            let html = '', navHtml = '', totalW = 0, doneW = 0, totalT = 0, doneT = 0;
+            COURSE.forEach(phase => {
+                let phaseHtml = '', phaseVisible = false;
+                phase.weeks.forEach(wk => {
+                    totalW++; const wDone = !!data.weeks[wk.id]; if (wDone) doneW++;
+                    wk.tasks.forEach(t => { totalT++; if (data.tasks[t.id]) doneT++ });
+                    let visible = true;
+                    if (currentFilter === 'phase-1' && phase.phase !== 1) visible = false;
+                    if (currentFilter === 'phase-2' && phase.phase !== 2) visible = false;
+                    if (currentFilter === 'phase-3' && phase.phase !== 3) visible = false;
+                    if (currentFilter === 'completed' && !wDone) visible = false;
+                    if (currentFilter === 'incomplete' && wDone) visible = false;
+                    if (searchQuery) { const q = searchQuery.toLowerCase(); const hay = [wk.title, wk.subtitle, ...wk.keywords, ...wk.tasks.map(t => t.text), ...wk.objectives].join(' ').toLowerCase(); if (!hay.includes(q)) visible = false }
+                    if (visible) phaseVisible = true;
+                    const tasksDone = wk.tasks.filter(t => data.tasks[t.id]).length;
+                    navHtml += `<div class="sidebar-dot${wDone ? ' done' : ''}" onclick="document.getElementById('card-${wk.id}').scrollIntoView({behavior:'smooth',block:'center'})"><span class="tip">${wk.week}: ${wk.title}</span></div>`;
+                    phaseHtml += `
+      <div class="week-card${wDone ? ' completed' : ''}" id="card-${wk.id}" style="display:${visible ? 'block' : 'none'}">
+        <button class="wk-toggle" onclick="toggleCard('${wk.id}')">
+          <div class="wk-check" onclick="event.stopPropagation();toggleWeek('${wk.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="wk-info">
+            <div class="wk-tag">${wk.week} \u00B7 ${tasksDone}/${wk.tasks.length} tasks \u00B7 ${wk.keywords.length} keywords</div>
+            <div class="wk-title">${wk.title}</div>
+            <div class="wk-subtitle">${wk.subtitle}</div>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="wk-content">
+          <div class="learning-obj"><h4>\uD83C\uDFAF What you'll learn</h4><ul>${wk.objectives.map(o => `<li>${o}</li>`).join('')}</ul></div>
+          <div class="keywords-section"><h4>\uD83D\uDD11 Keywords \u2014 Click to copy, then search to learn</h4><div class="keywords-wrap">${wk.keywords.map(k => `<span class="keyword" onclick="copyKw(this,'${k.replace(/'/g, "\\'")}')" title="Click to copy"><span class="kw-icon">\uD83D\uDCCB</span>${k}</span>`).join('')}</div></div>
+          <div class="tasks-section"><h4>\u2705 Tasks</h4>${wk.tasks.map(t => { const td = data.tasks[t.id]; return `<div class="task-item"><div class="task-check${td ? ' done' : ''}" onclick="toggleTask('${t.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="task-text">${t.text}</span></div>` }).join('')}</div>
+          <div class="resources-section"><h4>\uD83D\uDCDA Resources</h4>${wk.resources.map(r => `<div class="res-item">${r}</div>`).join('')}</div>
+          <button class="complete-btn" onclick="toggleWeek('${wk.id}')">${wDone ? '\u2713 Week Completed' : 'Mark Week as Complete'}</button>
+        </div>
+      </div>`;
+                });
+                html += `<section class="phase-section" id="phase${phase.phase}" style="display:${phaseVisible ? 'block' : 'none'}"><div class="phase-header"><div class="phase-num" style="background:${phase.color}">0${phase.phase}</div><div class="phase-htext"><h2>${phase.title}</h2><p>${phase.subtitle}</p></div></div>${phaseHtml}</section>`;
+            });
+            main.innerHTML = html; nav.innerHTML = navHtml;
+            const pct = totalW ? Math.round((doneW / totalW) * 100) : 0;
+            document.getElementById('hFill').style.width = pct + '%';
+            document.getElementById('hText').textContent = pct + '%';
+            document.getElementById('sC').textContent = doneW;
+            document.getElementById('sR').textContent = totalW - doneW;
+            document.getElementById('sP').textContent = pct + '%';
+            document.getElementById('sT').textContent = doneT;
+            COURSE.forEach((ph, i) => { const pd = ph.weeks.filter(w => data.weeks[w.id]).length; const pp = Math.round((pd / ph.weeks.length) * 100); document.getElementById(`pb${i + 1}`).style.width = pp + '%'; document.getElementById(`pp${i + 1}`).textContent = pp + '%' });
+        }
+
+        function toggleCard(id) { document.getElementById('card-' + id).classList.toggle('open') }
+        function toggleWeek(id) { const d = load(); d.weeks[id] = d.weeks[id] ? null : new Date().toISOString(); if (!d.weeks[id]) delete d.weeks[id]; save(d); const allDone = COURSE.flatMap(p => p.weeks.map(w => w.id)).every(wid => d.weeks[wid]); render(); if (allDone) setTimeout(() => { document.getElementById('celebBanner').classList.add('show'); launchConfetti() }, 400) }
+        function toggleTask(id) { const d = load(); d.tasks[id] = d.tasks[id] ? null : new Date().toISOString(); if (!d.tasks[id]) delete d.tasks[id]; save(d); render() }
+        function setFilter(f, el) { currentFilter = f; document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active')); el.classList.add('active'); render() }
+        function handleSearch() { searchQuery = document.getElementById('searchInput').value.trim(); render() }
+        function closeCeleb() { document.getElementById('celebBanner').classList.remove('show') }
+        function copyKw(el, text) { navigator.clipboard.writeText(text).then(() => { el.classList.add('copied'); setTimeout(() => el.classList.remove('copied'), 1500) }).catch(() => { const ta = document.createElement('textarea'); ta.value = text; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); el.classList.add('copied'); setTimeout(() => el.classList.remove('copied'), 1500) }) }
+        function launchConfetti() { const box = document.getElementById('confettiBox'), colors = ['#7c6aef', '#22d3ee', '#f472b6', '#fbbf24', '#34d399', '#f87171']; for (let i = 0; i < 80; i++) { const el = document.createElement('div'); el.style.cssText = `position:absolute;width:${5 + Math.random() * 7}px;height:${5 + Math.random() * 7}px;background:${colors[Math.floor(Math.random() * colors.length)]};border-radius:${Math.random() > .5 ? '50%' : '2px'};left:${Math.random() * 100}%;top:-10px;opacity:.9;animation:cFall ${2 + Math.random() * 2}s ease-in forwards;animation-delay:${Math.random() * .5}s`; box.appendChild(el) } setTimeout(() => { box.innerHTML = '' }, 5000) }
+        const st = document.createElement('style'); st.textContent = '@keyframes cFall{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}'; document.head.appendChild(st);
+        render();
+    </script>
+</body>
+
+</html>
